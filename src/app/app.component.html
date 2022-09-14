@@ -1,4 +1,17 @@
-<h1>Hola mundo!!</h1>
+<h1>Eventos</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click)="toggleButton()">Toggle Button</button>
+<p>Edad {{ person.age }}</p>
+<button (click)="increaseAge()">age ++</button>
+
+<hr>
+<h2>Propiedades</h2>
+<button [disabled]="btnDisabled" >Enviar</button>
+<input type="text" [value]="person.name">
+<progress [value]="person.age" max="100"></progress>
+<img [src]="person.avatar" width="100" alt="imagen">
+<hr>
+<h2>Hola mundo!!</h2>
 <h2>{{ 'Hola Mundo'.repeat(5) }}</h2>
 <p>3 + 3 = {{ 3 + 3 }}</p>
 <h3>Hola, soy {{ name }} y tengo {{ age }} años.</h3>
