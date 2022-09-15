@@ -7,6 +7,14 @@ import { Product } from './product.model';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  widthImg = 10;
+
+  box = {
+    width: 100,
+    height: 100,
+    background: 'red'
+  };
+
   name = 'Juan';
   age = 26;
   image = 'https://tresubresdobles.com/wp-content/uploads/2019/08/skft-912381dcd5b2c45c4a9ce8acf32cfd8c-768x961.jpg';
@@ -20,6 +28,12 @@ export class AppComponent {
 
   names: string[] = ['Juan', 'Carlos', 'Santiago'];
   newName: string = '';
+
+  register = {
+    name: '',
+    email: '',
+    password: ''
+  }
 
   products: Product[] = [
       {
@@ -79,5 +93,9 @@ export class AppComponent {
   }
   deleteName(index: number) {
     this.names.splice(index, 1);
+  }
+
+  onRegister() {
+    console.log(this.register);
   }
 }
