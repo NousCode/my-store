@@ -10,7 +10,6 @@ export class ImgComponent implements OnInit {
   @Input('img')
   set changeImg(newImg: string){
     this.img = newImg;
-    console.log('Only the image change.');
 
   }
   @Input() alt: string = '';
@@ -22,21 +21,12 @@ export class ImgComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.couterFn = window.setInterval(() => {
-      this.counter += 1;
-      console.log('run counter');
-
-    }, 1000)
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
 
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy');
-    window.clearInterval(this.couterFn);
-
   }
 
   imgError() {
@@ -44,7 +34,6 @@ export class ImgComponent implements OnInit {
   }
 
   imgLoad() {
-    console.log('loaded hijo');
     this.loaded.emit(this.img);
   }
 }
