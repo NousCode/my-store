@@ -5,8 +5,9 @@ import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.sass']
 })
-export class ImgComponent implements OnInit {
+export class ImgComponent {
   img: string = '';
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('img')
   set changeImg(newImg: string){
     this.img = newImg;
@@ -19,15 +20,6 @@ export class ImgComponent implements OnInit {
   couterFn: number | undefined;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-  ngOnChanges(changes: SimpleChanges) {
-
-  }
-
-  ngOnDestroy() {
-  }
 
   imgError() {
     this.img = this.imageDefault;
