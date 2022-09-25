@@ -11,7 +11,6 @@ export class AppComponent {
 
   imgParent = '';
   showImg = true;
-  token = '';
 
   constructor(
     private authService: AuthService,
@@ -35,19 +34,5 @@ export class AppComponent {
      .subscribe(rta => {
       console.log(rta);
      })
-  }
-
-  login() {
-    this.authService.login('carlos@mail.com', '12345')
-     .subscribe(rta => {
-      this.token = rta.access_token;
-     })
-  }
-
-  getProfile() {
-    this.authService.profile(this.token)
-    .subscribe(profile => {
-      console.log(profile);
-    });
   }
 }
