@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { switchMap } from 'rxjs/operators';
 import { zip } from 'rxjs';
@@ -11,10 +11,13 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.sass']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
+
+  @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
+
   myShoppingCart: Product[] = [];
   total = 0;
-  products: Product[] = [];
   showProductDetail = false;
   productChosen: Product = {
     id: '',
@@ -28,8 +31,6 @@ export class ProductsComponent implements OnInit {
     description: ''
   };
 
-  limit = 10;
-  offset = 0;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   constructor(
@@ -38,13 +39,6 @@ export class ProductsComponent implements OnInit {
   ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
    }
-
-  ngOnInit(): void {
-    this.productsService.getAllProducts(this.limit, this.offset)
-    .subscribe(data => {
-      this.products = data;
-    });
-  }
 
   onAddToshoppingCart(product: Product) {
     this.storeService.addProduct(product);
@@ -125,11 +119,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  loadMore() {
-    this.productsService.getAllProducts(this.limit, this.offset)
-    .subscribe(data => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
-    });
+  onLoadMore() {
+    this.loadMore.emit();
   }
 }
