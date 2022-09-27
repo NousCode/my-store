@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../services/store.service';
-import { AuthService } from '../../services/auth.service';
+import { StoreService } from '../../../services/store.service';
+import { AuthService } from '../../../services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { Category } from 'src/app/models/category.model';
-import { CategoriesService } from '../../services/categories.service';
+import { CategoriesService } from '../../../services/categories.service';
 import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-nav',
