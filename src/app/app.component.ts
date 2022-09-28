@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
 import { UsersService } from './services/users.service';
 import { FilesService } from './services/files.service';
 
@@ -8,7 +9,7 @@ import { FilesService } from './services/files.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   imgParent = '';
   showImg = true;
@@ -17,7 +18,17 @@ export class AppComponent {
   constructor(
     private fileService: FilesService,
     private userService: UsersService,
+    private tokenService: TokenService,
+    private authService: AuthService
   ) { }
+
+  ngOnInit() {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.authService.profile()
+      .subscribe()
+    }
+  }
 
   onLoaded(img: string) {
     console.log('Log padre', img);
