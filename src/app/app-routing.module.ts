@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 
+import { AdminGuard } from './guards/admin.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'cms',
-    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
+    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule),
+    canActivate: [AdminGuard]
   },
   {
     path: '**',
